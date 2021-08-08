@@ -1,9 +1,8 @@
 =begin
-Template Name: Kickoff - Tailwind CSS, Template Renamed as: Journey - Tailwind CSS
-Author: Andy Leverenz <-- All credit to him.
-Edited by: Pablo Blanco
+Template: Journey - Tailwind CSS
+Author: Andy Leverenz, Pablo Blanco
 Author URI: https://web-crunch.com, https://github.com/PabloB07
-Instructions: $ rails new myapp -d <postgresql, mysql, sqlite3> -m template.rb
+Instructions: $ rails new myapp -d <postgresql, mysql, sqlite3> -m template.rb or -m URL
 and finally: foreman start
 =end
 class Template < ::Rails::Generators::Base
