@@ -18,6 +18,7 @@ def add_gems
   gem 'omniauth'
   gem 'omniauth-twitter'
   gem 'font-awesome-rails'
+  gem 'open-uri'
 end
 
 def add_users
