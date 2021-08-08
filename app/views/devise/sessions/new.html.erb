@@ -1,0 +1,39 @@
+<% content_for :devise_form do %>
+  <h2 class="heading text-4xl font-bold pt-4 mb-8">Join to Journey</h2>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+    <div class="mb-6">
+      <%= f.label :email, class:"label" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+    </div>
+
+    <div class="mb-6">
+      <%= f.label :password, class:"label" %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "input" %>
+    </div>
+
+    <div class="mb-6 flex">
+      <% if devise_mapping.rememberable? -%>
+        <%= f.check_box :remember_me, class:"mr-2 leading-tight" %>
+        <%= f.label  :remember_me, class:"block text-grey-darker" %>
+      <% end -%>
+    </div>
+
+    <div class="mb-6">
+      <%= f.submit "Sign In", class: "btn bg-indigo-400 text-white w-full block text-center" %>
+    </div>
+
+    <div class="mb-6">
+        <%= link_to user_twitter_omniauth_authorize_path, class: "btn bg-indigo-400 text-white w-full block text-center" do %>
+            <span><i class="fab fa-twitter fa-1x"></i> Sign in with Twitter</span>
+        <% end %>
+    </div>
+
+  <% end %>
+
+  <hr class="border mt-6" />
+
+  <%= render "devise/shared/links" %>
+<% end %>
+
+<%= render "devise/shared/form_wrap" %>
