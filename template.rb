@@ -106,8 +106,7 @@ def add_foreman
   else
     run "type nul > #{file}"
   end
-  file
-  copy_file "Procfile"
+  copy_file file
 end
 
 def add_friendly_id
