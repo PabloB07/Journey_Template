@@ -84,8 +84,12 @@ def add_sidekiq
 end
 
 def add_foreman
-  run "touch Procfile" if OS.osx? || OS.unix?
-  run "type nul > Procfile" if OS.windows?
+  file = 'Procfile'
+  if file
+    run "touch #{file}"
+  else
+    run "type nul > #{file}"
+  end
   copy_file "Procfile"
 end
 
