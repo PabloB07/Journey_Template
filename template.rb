@@ -8,15 +8,15 @@ and finally: foreman start
 def add_template_repository_to_source_path
   if __FILE__ =~ %r{\Ahttps?://}
     require "tmpdir"
-    source_paths.unshift(tempdir = Dir.mktmpdir("jumpstart-"))
+    source_paths.unshift(tempdir = Dir.mktmpdir("journey-"))
     at_exit { FileUtils.remove_entry(tempdir) }
     git clone: [
       "--quiet",
-      "https://github.com/excid3/jumpstart.git",
+      "https://github.com/PabloB07/Journey_TailwindCSS",
       tempdir
     ].map(&:shellescape).join(" ")
 
-    if (branch = __FILE__[%r{jumpstart/(.+)/template.rb}, 1])
+    if (branch = __FILE__[%r{Journey_TailwindCSS/(.+)/template.rb}, 1])
       Dir.chdir(tempdir) { git checkout: branch }
     end
   else
