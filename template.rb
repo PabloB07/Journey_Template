@@ -100,13 +100,7 @@ def add_sidekiq
 end
 
 def add_foreman
-  file = 'Procfile'
-  if file
-    run "touch #{file}"
-  else
-    run "type nul > #{file}"
-  end
-  copy_file file
+  copy_file "Procfile"
 end
 
 def add_friendly_id
