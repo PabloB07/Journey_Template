@@ -71,9 +71,11 @@ def add_tailwind
   # Until PostCSS 8 ships with Webpacker/Rails we need to run this compatability version
   # See: https://tailwindcss.com/docs/installation#post-css-7-compatibility-build
   run "yarn add tailwindcss@npm:@tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9"
-  run "cp -r node_modules/tailwindcss/dist/tailwind app/javascript/stylesheets"
+  run "mkdir -p app/javascript/stylesheets"
+
   append_to_file("app/javascript/packs/application.js", 'import "stylesheets/application"')
   inject_into_file("./postcss.config.js", "\n    require('tailwindcss')('./app/javascript/stylesheets/tailwind.config.js'),", after: "plugins: [")
+
   run "mkdir -p app/javascript/stylesheets/components"
 end
 
