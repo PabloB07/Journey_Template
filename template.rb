@@ -90,6 +90,7 @@ def add_foreman
   else
     run "type nul > #{file}"
   end
+  file
   copy_file "Procfile"
 end
 
