@@ -5,9 +5,7 @@ Author URI: https://web-crunch.com, https://github.com/PabloB07
 Instructions: $ rails new myapp -d <postgresql, mysql, sqlite3> -m template.rb or -m URL
 and finally: foreman start
 =end
-class Template < ::Rails::Generators::Base
-
-  source_root File.expand_path('', __FILE__)
+source_root File.expand_path('', __FILE__)
   desc 'Journey template, install Template and generate the following source files for your app!'
 
 def add_gems
@@ -133,4 +131,3 @@ after_bundle do
   say "(foreman run web, sidekiq, fiendly_id, Webpack & services)", :yellow
   say "$ foreman start", :green
   end
-end
