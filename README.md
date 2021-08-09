@@ -1,4 +1,4 @@
-# Journey - Tailwind CSS
+# Journey - Template
 A rapid Rails 6 application template for personal use. This particular template utilizes [Tailwind CSS](https://tailwindcss.com/), a utility-first CSS framework for rapid UI development.
 
 Tailwind depends on Webpack so this also comes bundled with [webpacker](https://github.com/rails/webpacker) support.
@@ -21,13 +21,18 @@ When creating a new rails app simply pass the template file through.
 ### Creating a new app
 
 ```ruby
-rails new sample_app -d <postgresql, mysql, sqlite3> -m template.rb
+rails new example_app -d <postgresql, mysql, sqlite3> -m template.rb
+
+```
+Or
+```ruby
+rails new example_app -d <postgresql, mysql, sqlite3> -m "Raw URL"
 ```
 ### Remember to add Twitter secret & api Key
 ```ruby
 EDITOR=nano rails credentials:edit
 ```
-### and finally
+### Finally
 ```ruby
 foreman start
 ```
@@ -43,3 +48,12 @@ foreman start
 - PurgeCSS configuration to help with CSS file sizes 
 - Custom defaults for button and form elements
 - Omniauth with Twitter all views, model, controllers and shared are improved
+
+### Things to come on this template
+- Stripe integration
+- RUTify integration
+- MAdmin integration
+- Noticed integration
+- MercadoPago integration
+
+More soon!

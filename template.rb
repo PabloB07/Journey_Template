@@ -23,7 +23,6 @@ def add_template_repository
     source_paths.unshift(File.dirname(__FILE__))
   end
 end
-
 def add_gems
   gem 'devise', '~> 4.7', '>= 4.7.3'
   gem 'friendly_id', '~> 5.4', '>= 5.4.1'
@@ -32,7 +31,6 @@ def add_gems
   gem 'omniauth'
   gem 'omniauth-twitter'
   gem 'font-awesome-rails'
-  gem 'open-uri'
 end
 
 def add_users
