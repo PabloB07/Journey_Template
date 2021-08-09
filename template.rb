@@ -2,7 +2,7 @@
 Template: Journey - Tailwind CSS
 Author: Andy Leverenz, Pablo Blanco
 Author URI: https://web-crunch.com, https://github.com/PabloB07
-Instructions: $ rails new myapp -d <postgresql, mysql, sqlite3> -m template.rb or -m URL
+Instructions: $ rails new myapp -d <postgresql, mysql, sqlite3> -m template.rb / URL
 and finally: foreman start
 =end
 def add_template_repository
