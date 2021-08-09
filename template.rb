@@ -5,7 +5,9 @@ Author URI: https://web-crunch.com, https://github.com/PabloB07
 Instructions: $ rails new myapp -d <postgresql, mysql, sqlite3> -m template.rb or -m URL
 and finally: foreman start
 =end
-source_root File.expand_path('', __FILE__)
+def source_paths
+  [File.expand_path(File.dirname(__FILE__))]
+end
   desc 'Journey template, install Template and generate the following source files for your app!'
 
 def add_gems
@@ -99,6 +101,8 @@ end
 # Main setup
 
 add_gems
+source_paths
+
 
 after_bundle do
   add_users
