@@ -5,7 +5,7 @@ Author URI: https://web-crunch.com, https://github.com/PabloB07
 Instructions: $ rails new myapp -d <postgresql, mysql, sqlite3> -m template.rb or -m URL
 and finally: foreman start
 =end
-def add_template_repository_to_source_path
+def add_template_repository
   if __FILE__ =~ %r{\Ahttps?://}
     require "tmpdir"
     source_paths.unshift(tempdir = Dir.mktmpdir("journey-"))
@@ -109,7 +109,7 @@ end
 
 # Main setup
 
-add_template_repository_to_source_path
+add_template_repository
 add_gems
 
 
