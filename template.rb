@@ -5,8 +5,23 @@ Author URI: https://web-crunch.com, https://github.com/PabloB07
 Instructions: $ rails new myapp -d <postgresql, mysql, sqlite3> -m template.rb or -m URL
 and finally: foreman start
 =end
-def source_paths
-  [File.expand_path(File.dirname(__FILE__))]
+def add_template_repository_to_source_path
+  if __FILE__ =~ %r{\Ahttps?://}
+    require "tmpdir"
+    source_paths.unshift(tempdir = Dir.mktmpdir("jumpstart-"))
+    at_exit { FileUtils.remove_entry(tempdir) }
+    git clone: [
+      "--quiet",
+      "https://github.com/excid3/jumpstart.git",
+      tempdir
+    ].map(&:shellescape).join(" ")
+
+    if (branch = __FILE__[%r{jumpstart/(.+)/template.rb}, 1])
+      Dir.chdir(tempdir) { git checkout: branch }
+    end
+  else
+    source_paths.unshift(File.dirname(__FILE__))
+  end
 end
   desc 'Journey template, install Template and generate the following source files for your app!'
 
@@ -100,8 +115,8 @@ end
 
 # Main setup
 
+add_template_repository_to_source_path
 add_gems
-source_paths
 
 
 after_bundle do
