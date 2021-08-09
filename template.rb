@@ -23,7 +23,6 @@ def add_template_repository_to_source_path
     source_paths.unshift(File.dirname(__FILE__))
   end
 end
-  desc 'Journey template, install Template and generate the following source files for your app!'
 
 def add_gems
   gem 'devise', '~> 4.7', '>= 4.7.3'
