@@ -23,13 +23,15 @@ def add_template_repository
     source_paths.unshift(File.dirname(__FILE__))
   end
 end
+
 def add_gems
-  gem 'devise', '~> 4.7', '>= 4.7.3'
-  gem 'friendly_id', '~> 5.4', '>= 5.4.1'
-  gem 'sidekiq', '~> 6.1', '>= 6.1.2'
-  gem 'name_of_person', '~> 1.1', '>= 1.1.1'
+  gem 'devise'
+  gem 'friendly_id'
+  gem 'sidekiq'
+  gem 'name_of_person'
   gem 'omniauth'
   gem 'omniauth-twitter'
+  gem 'chilean-rutify'
   gem 'font-awesome-rails'
 end
 
@@ -89,16 +91,26 @@ def add_sidekiq
     "require 'sidekiq/web'\n\n",
     before: "Rails.application.routes.draw do"
 
-  content = <<-RUBY
+  sidekiq = <<-RUBY
     authenticate :user, lambda { |u| u.admin? } do
       mount Sidekiq::Web => '/sidekiq'
     end
   RUBY
-  insert_into_file "config/routes.rb", "#{content}\n\n", after: "Rails.application.routes.draw do\n"
+  insert_into_file "config/routes.rb", "#{sidekiq}\n\n", after: "Rails.application.routes.draw do\n"
 end
 
 def add_foreman
   copy_file "Procfile"
+end
+  
+def add_rutify
+  rutify = <<-RUBY
+  def rut=(value)
+    value = Chilean::Rutify.format_rut(value)
+    super(value)
+  end
+RUBY
+insert_into_file "app/models/user.rb", "#{rutify}\n\n", after: "class User < ApplicationRecord\n"
 end
 
 def add_friendly_id
@@ -116,6 +128,7 @@ after_bundle do
   remove_app_css
   add_sidekiq
   add_foreman
+  add_rutify
   copy_templates
   add_tailwind
   add_friendly_id

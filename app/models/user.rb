@@ -1,6 +1,16 @@
 class User < ApplicationRecord
+  
+  def rut=(value)
+    value = Chilean::Rutify.format_rut(value)
+    super(value)
+  end
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
+  # RUTify
+  validates :rut, presence: true, uniqueness: { case_sensitive: false }, rut: true
+
+  # Devise
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[twitter]
