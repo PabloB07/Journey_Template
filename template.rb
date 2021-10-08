@@ -12,11 +12,11 @@ def add_template_repository
     at_exit { FileUtils.remove_entry(tempdir) }
     git clone: [
       "--quiet",
-      "https://github.com/PabloB07/Journey_TailwindCSS",
+      "https://github.com/PabloB07/Journey_Template",
       tempdir
     ].map(&:shellescape).join(" ")
 
-    if (branch = __FILE__[%r{Journey_TailwindCSS/(.+)/template.rb}, 1])
+    if (branch = __FILE__[%r{Journey_Template/(.+)/template.rb}, 1])
       Dir.chdir(tempdir) { git checkout: branch }
     end
   else
