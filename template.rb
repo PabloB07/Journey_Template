@@ -30,7 +30,6 @@ def add_gems
   gem 'sidekiq'
   gem 'name_of_person'
   gem 'omniauth'
-  gem 'omniauth-twitter'
   gem 'chilean-rutify'
   gem 'font-awesome-rails'
 end
@@ -50,11 +49,6 @@ def add_users
   insert_into_file "config/routes.rb",
     ", controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }\n\n",
     after: "devise_for :users"
-
-    omniauth = <<-RUBY
-      config.omniauth :twitter, Rails.application.credentials.fetch(:twitter_api_key), Rails.application.credentials.fetch(:twitter_api_secret)
-      insert_into_file "devise.rb","#{omniauth}\n\n", after: "Devise.setup do |config|\n"
-  RUBY
 
   # Set admin boolean to false by default
   in_root do
@@ -121,7 +115,6 @@ after_bundle do
   copy_templates
   add_tailwind
   add_friendly_id
-
   # Migrate & create a migration named add_omniauth_to_users
   rails_command "db:create"
   rails_command "db:migrate"
@@ -133,7 +126,7 @@ after_bundle do
   git commit: %Q{ -m "Initial commit :fire: :package:" }
 
   say
-  say "🥳 Project successfully created, with this Template! 💎", :green
+  say "🥳 Project successfully created with this Template! 💎", :green
   say
   say "Switch to your app by running:"
   say "$ cd #{app_name}", :yellow
@@ -141,6 +134,6 @@ after_bundle do
   say "2 Ways to run:", :yellow
   say "$ rails server", :green
   say ""
-  say "(foreman run web, sidekiq, fiendly_id, Webpack & services)", :yellow
+  say "(foreman run web, sidekiq, Webpack & services)", :yellow
   say "$ foreman start", :green
   end
