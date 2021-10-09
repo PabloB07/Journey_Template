@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   # Devise
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[twitter]
 
 
@@ -25,6 +25,7 @@ class User < ApplicationRecord
     # uncomment the line below to skip the confirmation emails.
     # user.skip_confirmation!
   end
+end
 
   def email_required?
     false
